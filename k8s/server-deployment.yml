@@ -36,3 +36,7 @@ spec:
                 secretKeyRef:
                   name: pgpassword
                   key: PGPASSWORD
+      initContainers:
+        - name: init-pg
+          image: hypy/multi-server
+          command: ['sh', '-c', 'until nslookup postgres-cluster-ip-service; do echo waiting for postgres-cluster-ip-service; sleep 2; done;']
