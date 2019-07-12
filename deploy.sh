@@ -10,3 +10,7 @@ docker push $DOCKERID/multi-worker:latest
 docker push $DOCKERID/multi-worker:$GIT_SHA
 
 kubectl apply -f k8s
+
+kubectl set image deployments/server-deployment server=hypy/multi-server:$GIT_SHA
+kubectl set image deployments/client-deployment client=hypy/multi-client:$GIT_SHA
+kubectl set image deployments/worker-deployment worker=hypy/multi-worker:$GIT_SHA
